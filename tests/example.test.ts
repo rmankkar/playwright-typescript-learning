@@ -31,10 +31,24 @@ test('smoke test: example.com loads and displays correct title and text', async 
   // getByText finds elements by their visible text content.
   // Useful when there's no semantic role (like heading/button) to target.
   const paragraph = page.getByText(
-    'This is a simple Login page.'
+    'Welcome to Practice Test Automation!'
   );
 
   // Web-first assertion: Playwright auto-waits for the element to become visible
   // (up to timeout) before failing. No fixed sleeps needed.
   await expect(paragraph).toBeVisible();
+});
+
+// Capture a full-page screenshot automatically when a test in this file fails.
+// This helps you visually debug what went wrong without re-running the test.
+// Playwright saves the screenshot to test-results/ and embeds it in the HTML report.
+test.afterEach(async ({ page }, testInfo) => {
+  // testInfo.status === 'failed' means this test did not pass.
+  // We only screenshot on failure to avoid cluttering the report with passing tests.
+  if (testInfo.status === 'failed') {
+    await testInfo.attach('failure-screenshot', {
+      contentType: 'image/png',
+      body: await page.screenshot({ fullPage: true }),
+    });
+  }
 });

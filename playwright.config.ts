@@ -32,7 +32,7 @@ export default defineConfig({
   use: {
     // Base URL for all page.goto() calls.
     // page.goto('/login') becomes https://example.com/login
-    baseURL: 'https://practicetestautomation.com/practice-test-login/',
+    baseURL: 'https://practicetestautomation.com/',
 
     // Capture a trace on first retry (CI only, since retries=0 locally).
     // Traces record DOM snapshots, network traffic, and console logs.
